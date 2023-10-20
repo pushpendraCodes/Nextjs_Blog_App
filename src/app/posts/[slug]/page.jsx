@@ -8,20 +8,27 @@ import { fetchPostAsync, getSinglepost } from "@/component/cardList/PostsSlice";
 import { useEffect } from "react";
 import SkeletonLoading from "@/component/skelton_loading/SkeletonLoading";
 import { getStatus } from "@/app/write/BlogSlice";
+import { useSession } from "next-auth/react";
 export default function SinglePage({ params }) {
   const { slug } = params;
   let dispatch = useDispatch();
-  let status = useSelector(getStatus);
+
   useEffect(() => {
     dispatch(fetchPostAsync(slug));
   }, [dispatch]);
 
+  let status = useSelector(getStatus);
+  console.log(status,"status")
   let blogPost = useSelector(getSinglepost);
-  console.log(status, "status");
 
+  // const { status } = useSession();
+
+  // if (status === "loading") {
+  //   return <div className={styles.loading}>Loading...</div>;
+  // }
   return (
     <div className={styles.container}>
-      {status == "post_pending" ? (
+      {status === "post_pending" ? (
         <>
           <SkeletonLoading />
           <SkeletonLoading />

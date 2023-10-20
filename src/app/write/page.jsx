@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "./write.module.css";
 import { useEffect, useState } from "react";
-import "react-quill/dist/quill.bubble.css";
+import "react-quill/dist/quill.snow.css";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
@@ -14,6 +14,26 @@ import dynamic from "next/dynamic";
 export default function Page() {
 
   const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false})
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['link', 'image'],
+      ['clean'],
+    ],
+  };
+
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet',
+    'link', 'image',
+  ];
+
+
+
+
   let alert = useAlert();
   let router = useRouter();
   const { data } = useSession();
@@ -51,7 +71,7 @@ export default function Page() {
   const [open, setOpen] = useState(false);
   const [file, setSelectedFile] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
-  const [value, setValue] = useState("");
+  const [content, setValue] = useState("");
 
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
@@ -62,11 +82,11 @@ export default function Page() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (title && file && catSlug && value) {
+    if (title && file && catSlug && content) {
       const formData = new FormData();
       formData.append("img", file);
       formData.append("title", title);
-      formData.append("story", value);
+      formData.append("story", content);
       formData.append("category", catSlug);
       formData.append("userName", data.user.name);
       formData.append("userEmail", data.user.email);
@@ -74,11 +94,12 @@ export default function Page() {
 
       try {
         const audio = document.querySelector("audio");
-        dispatch(WriteBlogAsync({ formData, alert,audio }));
+        dispatch(WriteBlogAsync({ formData, alert,audio,router }));
         setTitle("");
         setValue("");
         setCatSlug("");
         setSelectedFile("");
+
       } catch (error) {
         console.error("Error during upload:", error);
       }
@@ -145,10 +166,11 @@ export default function Page() {
           )}
           <ReactQuill
             className={styles.textArea}
-            theme="bubble"
-            value={value}
+            theme="snow"
+            value={content}
             onChange={setValue}
             placeholder="Tell your story..."
+            modules={modules} formats={formats}
           />
         </div>
 

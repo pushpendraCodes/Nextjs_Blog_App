@@ -14,7 +14,8 @@
   .editor {
     display: flex;
     gap: 20px;
-    height: 700px;
+    height: 500px;
+
     position: relative;
   }
 

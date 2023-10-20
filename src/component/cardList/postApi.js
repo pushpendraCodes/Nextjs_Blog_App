@@ -17,7 +17,6 @@ export function fetchPost(id) {
         cache: "no-store",
       });
       let data = await res.json();
-
       resolve(data);
     } catch (error) {
       console.log(error, "error");

@@ -9,24 +9,29 @@ const initialState = {
   error: null,
 };
 
-let router = useRouter
+
 
  export const WriteBlogAsync = createAsyncThunk(
   "blog/riteBlog",
-  async ({ formData, alert,audio }, { rejectWithValue }) => {
+  async ({ formData, alert,audio ,router}, { rejectWithValue }) => {
+
     try {
       const response = await fetch("http://localhost:3000/api/posts", {
         method: "POST",
         body: formData,
       });
-    let Blogpost = await res.json()
-      console.log( response, "response");
+    let Blogpost = await response.json()
+      console.log( Blogpost,response, "response");
+
       if (response.ok) {
         alert.success(`blog published  `);
         audio.play();
-        setTimeout(()=>{
-          router.push(`/posts/${Blogpost.post._id}`)
-        },2000)
+
+       setTimeout(() => {
+        router.push(`/posts/${Blogpost.post._id}`)
+       }, 2000);
+
+
 
       }
     } catch (error) {

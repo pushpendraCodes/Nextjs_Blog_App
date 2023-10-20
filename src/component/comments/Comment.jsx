@@ -87,7 +87,7 @@ function Comment({ post }) {
       {post ? (
         post.comment?.map((item) => {
           return (
-            <div key={item.img} className={styles.comments}>
+            <div key={item.date} className={styles.comments}>
               <div className={styles.userContainer}>
                 <Image alt="img" width={40} height={40} src={`${item.img}`} />
                 <div className={styles.userName}>
