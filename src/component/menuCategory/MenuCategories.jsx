@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import styles from "./menuCategories.module.css";
+import styles from "./menucategories.module.css"
 
 const MenuCategories = () => {
 
