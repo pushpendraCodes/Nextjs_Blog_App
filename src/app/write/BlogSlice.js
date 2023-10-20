@@ -16,7 +16,7 @@ const initialState = {
   async ({ formData, alert,audio ,router}, { rejectWithValue }) => {
 
     try {
-      const response = await fetch("http://localhost:3000/api/posts", {
+      const response = await fetch(`${process.env.API_URL}/api/posts`, {
         method: "POST",
         body: formData,
       });

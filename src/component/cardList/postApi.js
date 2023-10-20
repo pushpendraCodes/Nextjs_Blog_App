@@ -1,7 +1,8 @@
+let api = process.env.API_URL
 export function fetchPosts(queryString) {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/posts?${queryString}`);
+      const res = await fetch(`${api}/api/posts?${queryString}`);
       let data = await res.json();
 
       resolve(data);
@@ -13,7 +14,7 @@ export function fetchPosts(queryString) {
 export function fetchPost(id) {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+      const res = await fetch(`${api}/api/posts/${id}`, {
         cache: "no-store",
       });
       let data = await res.json();
@@ -26,7 +27,7 @@ export function fetchPost(id) {
 export function fetchPopularPost() {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch("http://localhost:3000/api/popularPost" );
+      const res = await fetch(`${api}/api/popularPost` );
 
       let data = await res.json();
       console.log(data,"res")
@@ -39,7 +40,7 @@ export function fetchPopularPost() {
 export function postComment(updatedObject) {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/comment`, {
+      const res = await fetch(`${api}/api/comment`, {
         method: "PATCH",
         body: JSON.stringify(updatedObject),
         headers: { "content-type": "application/json" },
