@@ -1,8 +1,10 @@
-let api = process.env.API_URL
+
+
 export function fetchPosts(queryString) {
   return new Promise(async (resolve) => {
+
     try {
-      const res = await fetch(`${api}/api/posts?${queryString}`);
+      const res = await fetch(`https://nextjs-blog-app-dun-iota.vercel.app/api/posts?${queryString}`);
       let data = await res.json();
 
       resolve(data);
@@ -14,7 +16,7 @@ export function fetchPosts(queryString) {
 export function fetchPost(id) {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch(`${api}/api/posts/${id}`, {
+      const res = await fetch(`https://nextjs-blog-app-dun-iota.vercel.app/api/posts/${id}`, {
         cache: "no-store",
       });
       let data = await res.json();
@@ -27,7 +29,7 @@ export function fetchPost(id) {
 export function fetchPopularPost() {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch(`${api}/api/popularPost` );
+      const res = await fetch(`https://nextjs-blog-app-dun-iota.vercel.app/api/popularPost` );
 
       let data = await res.json();
       console.log(data,"res")
@@ -40,7 +42,7 @@ export function fetchPopularPost() {
 export function postComment(updatedObject) {
   return new Promise(async (resolve) => {
     try {
-      const res = await fetch(`${api}/api/comment`, {
+      const res = await fetch(`https://nextjs-blog-app-dun-iota.vercel.app/api/comment`, {
         method: "PATCH",
         body: JSON.stringify(updatedObject),
         headers: { "content-type": "application/json" },

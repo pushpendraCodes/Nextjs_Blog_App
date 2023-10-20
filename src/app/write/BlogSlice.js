@@ -16,7 +16,7 @@ const initialState = {
   async ({ formData, alert,audio ,router}, { rejectWithValue }) => {
 
     try {
-      const response = await fetch(`${process.env.API_URL}/api/posts`, {
+      const response = await fetch(`https://nextjs-blog-app-dun-iota.vercel.app/api/posts`, {
         method: "POST",
         body: formData,
       });
