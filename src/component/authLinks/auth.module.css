@@ -1,0 +1,125 @@
+.burger {
+  cursor: pointer;
+  display: none;
+}
+
+.loginBtn {
+  background-color: rgb(126 34 206);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.userProfile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: absolute;
+  top: 100%;
+
+  left: -30px;
+  z-index: 1;
+  display: none;
+  min-width: 160px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+/* Show dropdown on hover */
+.userProfile:hover .dropdown {
+  display: block;
+}
+
+/* Dropdown content */
+.dropdownContent {
+  padding: 10px;
+}
+
+/* Style for user name */
+.userName {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 15px;
+}
+
+/* Style for user email */
+.userEmail {
+  color: #666;
+  font-size: 13px;
+}
+.write {
+  background-color: rgb(5, 113, 115);
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.user {
+  display: flex;
+}
+.responsivMenu {
+  position: absolute;
+  /* top: 100px; */
+  left: 0;
+  background-color: var(--bg);
+  height: 100vh;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+
+  background-color: rgb(243, 243, 237);
+  transition: all 0.5s ease-in-out;
+  font-size: 36px;
+  z-index: 999;
+}
+.profile {
+  padding: 8px;
+  margin-left: 5px;
+}
+.profile h2 {
+  font-size: 16px;
+}
+.profile p {
+  font-size: 12px;
+}
+.links {
+  padding: 8px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.link1 {
+  font-size: 13px;
+}
+@media screen and (max-width: 750px) {
+  .burger {
+    display: flex;
+    width: 30;
+    height: 30;
+  }
+  .userProfile {
+    display: none;
+  }
+  .link {
+    display: none;
+  }
+}
+@media screen and (max-width: 500px) {
+  .write {
+    padding: 4px 5px;
+
+    font-size: 12px;
+  }
+  .loginBtn {
+    padding: 4px 5px;
+
+    font-size: 12px;
+  }
+}

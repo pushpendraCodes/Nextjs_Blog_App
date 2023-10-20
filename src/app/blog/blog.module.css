@@ -1,0 +1,17 @@
+
+.blog{
+    display: flex;
+    gap: 10px;
+}
+.container{
+margin-top: 20px;
+}
+.category{
+    font-size: 25px;
+    text-align: center;
+    background-color: rgb(246, 153, 86);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 7px 0px 7px 0px;
+    border-radius: 2px;
+}

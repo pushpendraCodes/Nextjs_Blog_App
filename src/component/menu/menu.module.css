@@ -1,0 +1,28 @@
+.container{
+    flex: 2;
+    margin-top: 25px;
+}
+.Posts{
+    margin-top: 20px;
+}
+.subtitle{
+    font-size: 14px;
+    width: max-content;
+    font-weight: 400;
+    color: var(--softTextColor);
+    background-color: var(--softBg);
+}
+.span{
+    font-size: 10px;
+    color: var(--softTextColor);
+
+}
+.title{
+    font-size: 20px;
+    font-weight: bold;
+}
+@media screen and (max-width:900px) {
+    .container{
+        display: none;
+    }
+}
