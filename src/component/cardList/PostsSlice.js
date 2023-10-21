@@ -79,6 +79,7 @@ const postsSlice = createSlice({
         state.status = "idel";
         state.posts = action.payload.posts;
         state.Totalposts = action.payload.totalPosts;
+        state.page = state.page+1
       })
       .addCase(fetchPostAsync.pending, (state, action) => {
         state.status = "post_pending";

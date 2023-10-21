@@ -14,7 +14,7 @@ export async function GET() {
       (a, b) => b.comment.length - a.comment.length
     );
 
-console.log(sortedArray,"sortedArray")
+
 return new NextResponse(
   JSON.stringify({ sortedArray }, { status: 200 })
 );

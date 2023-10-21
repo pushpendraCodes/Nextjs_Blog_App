@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+
 
 const { createSlice, createAsyncThunk,  } = require("@reduxjs/toolkit");
 
@@ -16,7 +16,7 @@ const initialState = {
   async ({ formData, alert,audio ,router}, { rejectWithValue }) => {
 
     try {
-      const response = await fetch(`https://nextjs-blog-app-dun-iota.vercel.app/api/posts`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts`, {
         method: "POST",
         body: formData,
       });
@@ -29,7 +29,7 @@ const initialState = {
 
        setTimeout(() => {
         router.push(`/posts/${Blogpost.post._id}`)
-       }, 2000);
+       }, 1000);
 
 
 

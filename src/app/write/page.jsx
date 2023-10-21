@@ -10,10 +10,10 @@ import { useRouter } from "next/navigation";
 import { useAlert } from "react-alert";
 import { WriteBlogAsync, getStatus } from "./BlogSlice";
 import dynamic from "next/dynamic";
-
+import ReactQuill from "react-quill";
 export default function Page() {
 
-  const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false})
+  // const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false})
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
@@ -72,7 +72,7 @@ export default function Page() {
   const [file, setSelectedFile] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [content, setValue] = useState("");
-
+console.log(file,"file")
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
 

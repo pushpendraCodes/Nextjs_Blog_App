@@ -53,6 +53,7 @@ export default function SinglePage({ params }) {
           </div>
           <div className={styles.imageContainer}>
             <Image
+            className={styles.blogImg}
               alt="img"
               width={400}
               height={300}
@@ -65,6 +66,7 @@ export default function SinglePage({ params }) {
         <div className={styles.blogContainer}>
           {status !== "post_pending" ? (
             <div
+            className={styles.blogText}
               dangerouslySetInnerHTML={{
                 __html: blogPost?.story,
               }}

@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google"
 import GithubProvider from "next-auth/providers/github"
 
 const handler = NextAuth({
+
   providers:[
     GoogleProvider({
         clientId:process.env.GOOGLE_ID,
@@ -12,7 +13,8 @@ const handler = NextAuth({
         clientId:process.env.GITHUB_ID,
         clientSecret:process.env.GITHUB_SECRET,
     }),
-  ]
+  ],
+  secret: process.env.NEXT_PUBLIC_SECRET
 })
 
 export { handler as GET, handler as POST }
