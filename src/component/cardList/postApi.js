@@ -13,6 +13,9 @@ export function fetchPosts(queryString) {
     }
   });
 }
+
+
+
 export function fetchPost(id) {
   return new Promise(async (resolve) => {
     try {

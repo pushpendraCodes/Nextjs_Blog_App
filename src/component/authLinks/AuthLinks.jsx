@@ -93,8 +93,8 @@ export default function AuthLinks() {
 
               <div className={styles.profile}>
                 <Image alt="img" style={{borderRadius:"50%"}} width={50} height={50} src={data.user.image || `/user.png`} />
-                <h2>{data.user.name}</h2>
-                <p>{data.user.email}</p>
+                <h2 className={styles.userName_res}>{data.user.name}</h2>
+                <p  className={styles.email_res}>{data.user.email}</p>
               </div>
               <hr />
               <div className={styles.links}>

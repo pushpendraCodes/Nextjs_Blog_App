@@ -39,13 +39,9 @@ export async function POST(req, res) {
       img: filename,
     });
 
-
-
     let post = await newPosts.save();
-    console.log(post,"post")
-    return new NextResponse(
-      JSON.stringify({ post }, { status: 200 })
-    );
+    console.log(post, "post");
+    return new NextResponse(JSON.stringify({ post }, { status: 200 }));
   } catch (error) {
     console.log("Error occured ", error);
     return NextResponse.json({ Message: "Failed", status: 500 });
@@ -57,8 +53,9 @@ export async function GET(req, res) {
   const page = searchParams.get("page");
   const pagesize = searchParams.get("pagesize");
   const category = searchParams.get("category");
+  const search = searchParams.get("search");
   // const category = searchParams.get("category");
-
+  console.log(search, "search");
   const pageNum = parseInt(page, 10);
   const pageSizeNum = parseInt(pagesize, 10);
   const skip = (pageNum - 1) * pageSizeNum;
@@ -69,12 +66,19 @@ export async function GET(req, res) {
 
   if (category) {
     posts = await Blog.find({ category: category });
-
-
+  }
+  if (search) {
+    const searchTerms = search.split(" ");
+    posts = await Blog.find({
+      $or: searchTerms.map((term) => ({
+        title: { $regex: new RegExp(term, "i") },
+      })),
+    });
   }
 
   try {
-    posts = posts.reverse()
+    posts = posts.reverse();
+    console.log(posts);
     posts = posts.splice(skip, pageSizeNum);
     // return new NextResponse({data:posts}, { status: 200 });
     return new NextResponse(

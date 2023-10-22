@@ -47,7 +47,9 @@
   margin-bottom: 5px;
   font-size: 15px;
 }
-
+.userName_res{
+  color: var(--textColor);
+}
 /* Style for user email */
 .userEmail {
   color: #666;
@@ -109,6 +111,15 @@
   }
   .link {
     display: none;
+  }
+  .userName_res{
+    color: black;
+  }
+  .email_res{
+    color: black;
+  }
+  .link1{
+    color: black;
   }
 }
 @media screen and (max-width: 500px) {

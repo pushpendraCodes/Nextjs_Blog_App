@@ -13,19 +13,22 @@ const initialState = {
   singlepost: {},
   Totalposts: 0,
   status: "idel",
-  pagesize: 5,
+  pagesize: 8,
   page: 1,
 };
 
 export const fetchPostsAsync = createAsyncThunk(
   "post/fetchposts",
-  async ({ pagination, category }, { rejectWithValue }) => {
+  async ({ pagination, category ,search }, { rejectWithValue }) => {
     let queryString = "";
     for (let key in pagination) {
       queryString += `${key}=${pagination[key]}&`;
     }
     if (category) {
       queryString += `category=${category}&`;
+    }
+    if (search) {
+      queryString += `search=${search}&`;
     }
     let response = await fetchPosts(queryString);
     return response;
@@ -79,7 +82,10 @@ const postsSlice = createSlice({
         state.status = "idel";
         state.posts = action.payload.posts;
         state.Totalposts = action.payload.totalPosts;
-        state.page = state.page+1
+        if(state.page*state.Totalposts<state.Totalposts){
+          state.page = state.page+1
+        }
+
       })
       .addCase(fetchPostAsync.pending, (state, action) => {
         state.status = "post_pending";
