@@ -7,11 +7,9 @@ import { writeFile } from "fs/promises";
 import cloudinary from "cloudinary";
 
 import os from "os";
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+
+
+
 
 console.log(process.env.CLOUDINARY_CLOUD_NAME, "CLOUDINARY_CLOUD_NAME");
 cloudinary.config({

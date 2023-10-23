@@ -19,6 +19,18 @@
     position: relative;
   }
 
+
+.loading{
+  width: max-content;
+  padding: 12px 25px;
+  background-color: rgb(244, 237, 228);
+  border-radius: 5px;
+  height: max-content;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+}
+
   .button,
   .addButton {
     width: 36px;

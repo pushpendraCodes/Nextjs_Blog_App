@@ -3,7 +3,6 @@ import Image from "next/image";
 import styles from "./write.module.css";
 import { useEffect, useState } from "react";
 
-
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -143,7 +142,12 @@ export default function Page() {
             </div>
           )}
 
-          <QuillEditor value={content} onChange={setValue} />
+          <QuillEditor content={content} setValue={setValue} />
+
+          {Blogstatus === "loading" && (
+            <div className={styles.loading}>... Loading</div>
+          )}
+
         </div>
 
         <button onClick={handleUpload} className={styles.publish}>
