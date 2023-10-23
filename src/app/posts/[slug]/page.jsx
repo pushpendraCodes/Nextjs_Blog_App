@@ -57,7 +57,8 @@ export default function SinglePage({ params }) {
               alt="img"
               width={400}
               height={300}
-              src={`/uploads/${blogPost?.img}`}
+              src={blogPost?.img}
+
             />
           </div>
         </div>

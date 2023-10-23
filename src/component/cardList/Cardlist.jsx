@@ -35,12 +35,12 @@ export default function Cardlist({ category }) {
     <div className={style.container}>
       <h1 className={style.title}>Recent Post</h1>
 
-      {posts?.length > 0 &&
+      {posts?.length > 0 &&status == "idel"&&
         posts.map((post) => {
           return <Card key={post._id} post={post} />;
         })}
 
-      {posts.length > 0 && <Pagination />}
+      {posts.length > 7 && status == "idel" && <Pagination />}
       {(posts.length<1 && status == "idel" && <p>no posts found</p>)}
       {status == "pending" && (
         <>

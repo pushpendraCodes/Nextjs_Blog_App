@@ -2,38 +2,16 @@
 import Image from "next/image";
 import styles from "./write.module.css";
 import { useEffect, useState } from "react";
-import "react-quill/dist/quill.snow.css";
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useAlert } from "react-alert";
 import { WriteBlogAsync, getStatus } from "./BlogSlice";
-import dynamic from "next/dynamic";
-import ReactQuill from "react-quill";
+
+import QuillEditor from "./QuillEditor";
 export default function Page() {
-
-  // const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false})
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['link', 'image'],
-      ['clean'],
-    ],
-  };
-
-  const formats = [
-    'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet',
-    'link', 'image',
-  ];
-
-
-
-
   let alert = useAlert();
   let router = useRouter();
   const { data } = useSession();
@@ -72,7 +50,7 @@ export default function Page() {
   const [file, setSelectedFile] = useState(null);
   const [showAlert, setShowAlert] = useState(false);
   const [content, setValue] = useState("");
-console.log(file,"file")
+  console.log(file, "file");
   const [title, setTitle] = useState("");
   const [catSlug, setCatSlug] = useState("");
 
@@ -94,12 +72,11 @@ console.log(file,"file")
 
       try {
         const audio = document.querySelector("audio");
-        dispatch(WriteBlogAsync({ formData, alert,audio,router }));
+        dispatch(WriteBlogAsync({ formData, alert, audio, router }));
         setTitle("");
         setValue("");
         setCatSlug("");
         setSelectedFile("");
-
       } catch (error) {
         console.error("Error during upload:", error);
       }
@@ -146,6 +123,7 @@ console.log(file,"file")
                 type="file"
                 id="image"
                 name="img"
+                accept="image/*"
                 onChange={(e) => {
                   handleFileChange(e);
                 }}
@@ -164,14 +142,8 @@ console.log(file,"file")
               </button>
             </div>
           )}
-          <ReactQuill
-            className={styles.textArea}
-            theme="snow"
-            value={content}
-            onChange={setValue}
-            placeholder="Tell your story..."
-            modules={modules} formats={formats}
-          />
+
+          <QuillEditor value={content} onChange={setValue} />
         </div>
 
         <button onClick={handleUpload} className={styles.publish}>

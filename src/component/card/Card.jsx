@@ -15,7 +15,8 @@ export default function Card({ post }) {
             className={style.img}
             width={300}
             height={250}
-            src={`/uploads/${post?.img}`}
+            src={post?.img}
+            style={{objectFit:"cover"}}
           />
         </div>
         <div className={style.textContainer}>

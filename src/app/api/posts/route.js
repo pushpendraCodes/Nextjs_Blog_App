@@ -4,6 +4,23 @@ import { NextResponse } from "next/server";
 import path from "path";
 import { writeFile } from "fs/promises";
 
+import cloudinary from "cloudinary";
+
+import os from "os";
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+console.log(process.env.CLOUDINARY_CLOUD_NAME, "CLOUDINARY_CLOUD_NAME");
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+});
+
 export async function POST(req, res) {
   const formData = await req.formData();
 
@@ -19,16 +36,20 @@ export async function POST(req, res) {
     return NextResponse.json({ error: "No files received." }, { status: 400 });
   }
 
-  const buffer = Buffer.from(await file.arrayBuffer());
-  const filename = Date.now() + file.name.replaceAll(" ", "_");
+  // this code does not work in vercel
+  // to save in folder
+  // let uploaddir = path.join(process.cwd(), "public/uploads/" + filename);
+  // to upload cloudinary
 
   try {
     await connectDB();
-    await writeFile(
-      path.join(process.cwd(), "public/uploads/" + filename),
-      buffer
-    );
+    let uploaddir = await saveImageToLocal(file);
 
+    let cloudinaryRes = await cloudinary.v2.uploader.upload(uploaddir, {
+      folder: "next_blog_upload",
+    });
+
+    console.log(cloudinaryRes, "cloudinaryRes");
     const newPosts = await new Blog({
       userName,
       userEmail,
@@ -36,16 +57,31 @@ export async function POST(req, res) {
       category,
       story,
       userPic,
-      img: filename,
+      img: cloudinaryRes.secure_url,
     });
 
     let post = await newPosts.save();
-    console.log(post, "post");
+    console.log(post, "postblog");
     return new NextResponse(JSON.stringify({ post }, { status: 200 }));
   } catch (error) {
     console.log("Error occured ", error);
     return NextResponse.json({ Message: "Failed", status: 500 });
   }
+}
+
+async function saveImageToLocal(file) {
+  // to save temp folder local
+  let extension = file.type.split("/")[1];
+  console.log(extension, "extension ");
+  const buffer = Buffer.from(await file.arrayBuffer());
+  const filename = Date.now() + extension;
+  console.log(filename, "filename");
+
+  const tempdir = os.tmpdir();
+  let uploaddir = path.join(tempdir, filename);
+  await writeFile(uploaddir, buffer);
+
+  return uploaddir;
 }
 
 export async function GET(req, res) {

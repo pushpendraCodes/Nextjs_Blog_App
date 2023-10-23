@@ -23,7 +23,7 @@ const initialState = {
     let Blogpost = await response.json()
       console.log( Blogpost,response, "response");
 
-      if (response.ok) {
+      if (response.ok && Blogpost) {
         alert.success(`blog published  `);
         audio.play();
 
