@@ -8,7 +8,7 @@
   flex: 2;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
   font-size: medium;
 }
@@ -16,10 +16,14 @@
   flex: 1;
   /* text-align: center; */
 }
-.logo  {
-  font-size: 25px;
-  font-weight: bold;
-}
+.logo{
+  font-size: 30px;
+margin-right: 4px;
+display: flex;
+gap: 5px;
+align-items: center;
+font-weight: bold;
+ }
 .social {
   flex: 1;
   display: flex;
@@ -32,11 +36,45 @@
 
 }
 
+.responsiveContainer{
+  display: none;
+}
+.write {
+  background-color: rgb(5, 113, 115);
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.loginBtn {
+  background-color: rgb(126 34 206);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 15px;
+}
 
+.a{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap:20px ;
+}
+@media screen and (max-width: 900px) {
+  .link {
+    display: none;
+  }
+  .links{
+    justify-items:center;
+  }
+}
 
 @media screen and (max-width: 750px) {
   .link {
     display: none;
+  }
+
+  .links{
+    justify-items:end;
   }
   .social {
     display: none;
@@ -44,8 +82,22 @@
 }
 
 @media screen and (max-width: 450px) {
- .logo{
-  font-size: 22px;
-margin-right: 4px;
- }
+
+ .responsiveContainer{
+  display: block;
+}
+.container{
+  display: none;
+}
+.logo_res{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+
+}
+.line{
+  height: 1px;
+background-color: rgb(233, 31, 58);
+}
 }

@@ -18,7 +18,11 @@
 
   @media screen and (max-width: 450px) {
     .container{
-      width: 35px;
-      height: 18px;
+    display: none;
+    }
+   }
+  @media screen and (max-width: 1000px) {
+    .container{
+    display: none;
     }
    }

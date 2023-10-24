@@ -42,7 +42,7 @@ export async function POST(req, res) {
   try {
     await connectDB();
     let uploaddir = await saveImageToLocal(file);
-
+console.log(uploaddir,"uploaddir")
     let cloudinaryRes = await cloudinary.v2.uploader.upload(uploaddir, {
       folder: "next_blog_upload",
     });
@@ -78,7 +78,6 @@ async function saveImageToLocal(file) {
   const tempdir = os.tmpdir();
   let uploaddir = path.join(tempdir, filename);
   await writeFile(uploaddir, buffer);
-
   return uploaddir;
 }
 

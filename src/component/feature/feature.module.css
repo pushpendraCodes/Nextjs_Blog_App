@@ -61,8 +61,23 @@
     align-items: center;
 
       }
+
+      .heading {
+        font-size: 22px;
+      }
 .img{
   width: 300px;
+}
+.title h2 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.title p {
+  font-size: 25px;
+  font-weight: 100;
+}
+.container{
+  margin-top: 30px;
 }
 
 }

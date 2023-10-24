@@ -14,9 +14,10 @@
   .editor {
     display: flex;
     gap: 20px;
-    height: 500px;
+    height: 300px;
 
     position: relative;
+    margin-bottom: 55px;
   }
 
 
@@ -56,6 +57,7 @@
     z-index: 999;
     width: 100%;
     left: 50px;
+
   }
 
   .input{
@@ -85,4 +87,11 @@
     color: white;
     cursor: pointer;
     border-radius: 20px;
+  }
+
+  @media screen and (max-width: 462px) {
+    .container{
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
   }

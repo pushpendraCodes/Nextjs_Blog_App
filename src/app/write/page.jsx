@@ -112,42 +112,31 @@ export default function Page() {
           <p style={{ marginLeft: "5px", marginBottom: "6px" }}>{file.name}</p>
         )}
 
-        <div className={styles.editor}>
-          <button className={styles.button} onClick={() => setOpen(!open)}>
-            <Image src="/plus.png" alt="img" width={16} height={16} />
-          </button>
-          {open && (
-            <div className={styles.add}>
-              <input
-                type="file"
-                id="image"
-                name="img"
-                accept="image/*"
-                onChange={(e) => {
-                  handleFileChange(e);
-                }}
-                style={{ display: "none" }}
-              />
-              <button className={styles.addButton}>
-                <label htmlFor="image">
-                  <Image src="/picture.png" alt="img" width={16} height={16} />
-                </label>
-              </button>
-              <button className={styles.addButton}>
-                <Image src="/external.png" alt="img" width={16} height={16} />
-              </button>
-              <button className={styles.addButton}>
-                <Image src="/video.png" alt="img" width={16} height={16} />
-              </button>
-            </div>
-          )}
+        <div>
+        <label className={styles.button} htmlFor="image">
 
+            <Image  src="/plus.png" alt="img" width={16} height={16} />
+
+          </label>
+
+          <input
+            type="file"
+            id="image"
+            name="img"
+            accept="image/*"
+            onChange={(e) => {
+              handleFileChange(e);
+            }}
+            style={{ display: "none" }}
+          />
+        </div>
+        <br />
+        <div className={styles.editor}>
           <QuillEditor content={content} setValue={setValue} />
 
           {Blogstatus === "loading" && (
             <div className={styles.loading}>... Loading</div>
           )}
-
         </div>
 
         <button onClick={handleUpload} className={styles.publish}>

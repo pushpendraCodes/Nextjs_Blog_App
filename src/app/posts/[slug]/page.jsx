@@ -37,13 +37,13 @@ export default function SinglePage({ params }) {
       ) : (
         <div className={styles.headingContainer}>
           <div className={styles.textContainer}>
-            <h2>{blogPost.title}</h2>
+            <h2>{blogPost?.title}</h2>
             <div className={styles.userContainer}>
               <Image
                 alt="img"
                 width={60}
                 height={60}
-                src={blogPost.userPic}
+                src={blogPost?.userPic}
               />
               <div className={styles.userName}>
                 <h4>{blogPost?.userName}</h4>

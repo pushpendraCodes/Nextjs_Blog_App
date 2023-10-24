@@ -47,7 +47,7 @@
   margin-bottom: 5px;
   font-size: 15px;
 }
-.userName_res{
+.userName_res {
   color: var(--textColor);
 }
 /* Style for user email */
@@ -100,7 +100,15 @@
 .link1 {
   font-size: 13px;
 }
-@media screen and (max-width: 750px) {
+.res_container{
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .link {
+    display: none;
+  }
+
   .burger {
     display: flex;
     width: 30;
@@ -109,28 +117,69 @@
   .userProfile {
     display: none;
   }
+}
+
+@media screen and (max-width: 750px) {
+
+
+
   .link {
     display: none;
   }
-  .userName_res{
+  .userName_res {
     color: black;
   }
-  .email_res{
+  .email_res {
     color: black;
   }
-  .link1{
+  .link1 {
     color: black;
   }
 }
-@media screen and (max-width: 500px) {
+
+
+@media screen and (max-width: 450px) {
   .write {
-    padding: 4px 5px;
+    padding: 3px 5px;
 
     font-size: 12px;
   }
+
   .loginBtn {
-    padding: 4px 5px;
+    padding: 3px 5px;
 
     font-size: 12px;
+  }
+
+  .container {
+    display: none;
+  }
+.menuBar{
+  display: none;
+}
+  .res_container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .res_menu {
+    margin-top: 10px;
+  }
+
+  .write {
+    background-color: rgb(235 171 7);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 16px;
+  }
+
+  .loginBtn {
+    background-color:  rgb(206, 34, 57);
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-left: 5px;
   }
 }

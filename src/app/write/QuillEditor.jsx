@@ -32,6 +32,7 @@ const QuillEditor = ({ content, setValue }) => {
             onChange={setValue}
             placeholder="Tell your story..."
             modules={modules} formats={formats}
+
           />
   );
 };
